@@ -1,0 +1,101 @@
+------------------------------------------------------------
+Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Slow 1100mV 85C Model Setup 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -7.183
+TNS   : -33304.179
+
+Type  : Slow 1100mV 85C Model Setup 'clock'
+Slack : -2.544
+TNS   : -2.544
+
+Type  : Slow 1100mV 85C Model Hold 'divisor_freq:clk_25MHZ|clk_out'
+Slack : 0.418
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Hold 'clock'
+Slack : 0.927
+TNS   : 0.000
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -2.225
+TNS   : -32241.824
+
+Type  : Slow 1100mV 85C Model Minimum Pulse Width 'clock'
+Slack : -0.510
+TNS   : -0.904
+
+Type  : Slow 1100mV 0C Model Setup 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -7.390
+TNS   : -31355.403
+
+Type  : Slow 1100mV 0C Model Setup 'clock'
+Slack : -2.379
+TNS   : -2.379
+
+Type  : Slow 1100mV 0C Model Hold 'divisor_freq:clk_25MHZ|clk_out'
+Slack : 0.435
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Hold 'clock'
+Slack : 0.803
+TNS   : 0.000
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -2.225
+TNS   : -32249.157
+
+Type  : Slow 1100mV 0C Model Minimum Pulse Width 'clock'
+Slack : -0.520
+TNS   : -0.914
+
+Type  : Fast 1100mV 85C Model Setup 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -3.706
+TNS   : -19429.399
+
+Type  : Fast 1100mV 85C Model Setup 'clock'
+Slack : -1.895
+TNS   : -1.895
+
+Type  : Fast 1100mV 85C Model Hold 'divisor_freq:clk_25MHZ|clk_out'
+Slack : 0.155
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Hold 'clock'
+Slack : 0.863
+TNS   : 0.000
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -2.174
+TNS   : -32002.685
+
+Type  : Fast 1100mV 85C Model Minimum Pulse Width 'clock'
+Slack : -0.484
+TNS   : -0.616
+
+Type  : Fast 1100mV 0C Model Setup 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -3.428
+TNS   : -16278.906
+
+Type  : Fast 1100mV 0C Model Setup 'clock'
+Slack : -1.556
+TNS   : -1.556
+
+Type  : Fast 1100mV 0C Model Hold 'divisor_freq:clk_25MHZ|clk_out'
+Slack : 0.142
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Hold 'clock'
+Slack : 0.565
+TNS   : 0.000
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'divisor_freq:clk_25MHZ|clk_out'
+Slack : -2.174
+TNS   : -31958.815
+
+Type  : Fast 1100mV 0C Model Minimum Pulse Width 'clock'
+Slack : -0.490
+TNS   : -0.638
+
+------------------------------------------------------------

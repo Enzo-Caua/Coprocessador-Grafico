@@ -1,0 +1,34 @@
+
+State Machine - |controlador_JER|estado_media
+Name estado_media.01111 estado_media.01110 estado_media.01101 estado_media.01100 estado_media.01011 estado_media.01010 estado_media.01001 estado_media.01000 estado_media.00111 estado_media.00110 estado_media.00101 estado_media.00100 estado_media.00011 estado_media.00010 estado_media.00001 estado_media.00000 estado_media.10000 
+estado_media.00000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 
+estado_media.00001 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 0 
+estado_media.00010 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 1 0 
+estado_media.00011 0 0 0 0 0 0 0 0 0 0 0 0 1 0 0 1 0 
+estado_media.00100 0 0 0 0 0 0 0 0 0 0 0 1 0 0 0 1 0 
+estado_media.00101 0 0 0 0 0 0 0 0 0 0 1 0 0 0 0 1 0 
+estado_media.00110 0 0 0 0 0 0 0 0 0 1 0 0 0 0 0 1 0 
+estado_media.00111 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 1 0 
+estado_media.01000 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 1 0 
+estado_media.01001 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 1 0 
+estado_media.01010 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 1 0 
+estado_media.01011 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 0 
+estado_media.01100 0 0 0 1 0 0 0 0 0 0 0 0 0 0 0 1 0 
+estado_media.01101 0 0 1 0 0 0 0 0 0 0 0 0 0 0 0 1 0 
+estado_media.01110 0 1 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 
+estado_media.01111 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 0 
+estado_media.10000 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1 1 
+
+State Machine - |controlador_JER|vga_driver:ctrl_VGA|v_state
+Name v_state.V_BACK_STATE v_state.V_PULSE_STATE v_state.V_FRONT_STATE v_state.V_ACTIVE_STATE 
+v_state.V_ACTIVE_STATE 0 0 0 0 
+v_state.V_FRONT_STATE 0 0 1 1 
+v_state.V_PULSE_STATE 0 1 0 1 
+v_state.V_BACK_STATE 1 0 0 1 
+
+State Machine - |controlador_JER|vga_driver:ctrl_VGA|h_state
+Name h_state.H_BACK_STATE h_state.H_PULSE_STATE h_state.H_FRONT_STATE h_state.H_ACTIVE_STATE 
+h_state.H_ACTIVE_STATE 0 0 0 0 
+h_state.H_FRONT_STATE 0 0 1 1 
+h_state.H_PULSE_STATE 0 1 0 1 
+h_state.H_BACK_STATE 1 0 0 1 

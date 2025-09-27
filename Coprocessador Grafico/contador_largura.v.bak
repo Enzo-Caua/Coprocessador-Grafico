@@ -1,0 +1,21 @@
+module contador_largura (
+    input  wire clock,
+    input  wire reset,   // reset síncrono ativo em 1
+    input  wire enable,   // habilita a contagem
+    output reg  [9:0] cont_largura, // 10 bits para até 639
+    output wire done         // vale 1 quando count == 639
+);
+    // sinal que indica fim da contagem
+    assign done = (cont_largura == 10'd639);
+
+    always @(posedge clock) begin
+        if (reset) begin
+            cont_largura <= 10'd0;
+        end else if (enable) begin
+            if (cont_largura == 10'd639)
+                cont_largura <= 10'd0;   // reinicia
+            else
+                cont_largura <= cont_largura + 10'd1;
+        end
+    end
+endmodule

@@ -1,0 +1,68 @@
+module seletor_algoritmo (
+   input wire clock,
+   input wire reset,
+   input wire [3:0] chave_alg,	// seletor de algoritmo
+	input wire [3:0] chave_zoom,
+   input wire [9:0] x_destino,  // coordenada X destino
+   input wire [9:0] y_destino,  // coordenada Y destino
+
+   // saídas finais
+   output reg  [9:0] x_orig0, y_orig0, // primeira coordenada
+   output reg  [9:0] x_orig1, y_orig1, // segunda coordenada
+   output reg  [9:0] x_orig2, y_orig2, // terceira coordenada
+   output reg  [9:0] x_orig3, y_orig3  // quarta coordenada
+);
+
+   // fios internos para cada algoritmo
+   wire [9:0] x_nni_zin, y_nni_zin;
+   wire [9:0] x_nni_zout, y_nni_zout;
+   wire [9:0] x_rep, y_rep;
+   wire [9:0] x0_med, y0_med, x1_med, y1_med, x2_med, y2_med, x3_med, y3_med;
+
+   // Nearest Neighbor Zoom In
+   zoom_in_nni nni_zin (
+      .clock(clock),
+      .reset(reset),
+      .x_zoom(x_zoom),
+      .y_zoom(y_zoom),
+      .x_orig(x_nni_zin),
+      .y_orig(y_nni_zin),
+		.fator_zoom(fator_zoom)
+   );
+
+   // Nearest Neighbor Zoom Out
+   zoom_out_nni nni_zout (
+      .clock(clock),
+      .reset(reset),
+      .x_zoom(x_zoom),
+      .y_zoom(y_zoom),
+      .x_orig(x_nni_zout),
+      .y_orig(y_nni_zout),
+		.fator_zoom(fator_zoom)
+   );
+
+   // Pixel Replication
+   zoom_in_pixel_rep pixel_rep_zin (
+      .x_zoom(x_zoom),
+      .y_zoom(y_zoom),
+      .x_orig(x_rep),
+      .y_orig(y_rep),
+		.fator_zoom(fator_zoom)
+   );
+
+   // Média de Blocos
+   zoom_out_media_blocos media_zout (
+      .x_out(x_zoom),
+      .y_out(y_zoom),
+      .x0(x0_med), 
+		.y0(y0_med),
+      .x1(x1_med), 
+		.y1(y1_med),
+      .x2(x2_med), 
+		.y2(y2_med),
+      .x3(x3_med), 
+		.y3(y3_med),
+		.fator_zoom(fator_zoom)
+   );
+
+endmodule

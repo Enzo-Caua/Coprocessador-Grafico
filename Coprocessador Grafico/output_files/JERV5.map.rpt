@@ -1,0 +1,881 @@
+Analysis & Synthesis report for JERV5
+Fri Sep 26 20:51:04 2025
+Quartus Prime Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Analysis & Synthesis RAM Summary
+  9. Analysis & Synthesis DSP Block Usage Summary
+ 10. Analysis & Synthesis IP Cores Summary
+ 11. State Machine - |controlador_JER|estado_media
+ 12. State Machine - |controlador_JER|vga_driver:ctrl_VGA|v_state
+ 13. State Machine - |controlador_JER|vga_driver:ctrl_VGA|h_state
+ 14. Registers Removed During Synthesis
+ 15. Removed Registers Triggering Further Register Optimizations
+ 16. General Register Statistics
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source assignments for img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated
+ 19. Source assignments for ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated
+ 20. Parameter Settings for User Entity Instance: Top-level Entity: |controlador_JER
+ 21. Parameter Settings for User Entity Instance: img1:ROM_inst|altsyncram:altsyncram_component
+ 22. Parameter Settings for User Entity Instance: ram1p:RAM_inst|altsyncram:altsyncram_component
+ 23. Parameter Settings for User Entity Instance: vga_driver:ctrl_VGA
+ 24. altsyncram Parameter Settings by Entity Instance
+ 25. Port Connectivity Checks: "contador_altura:cont_alt"
+ 26. Post-Synthesis Netlist Statistics for Top Partition
+ 27. Elapsed Time Per Partition
+ 28. Analysis & Synthesis Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2023  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and any partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details, at
+https://fpgasoftware.intel.com/eula.
+
+
+
++----------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                     ;
++---------------------------------+------------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Fri Sep 26 20:51:04 2025          ;
+; Quartus Prime Version           ; 23.1std.0 Build 991 11/28/2023 SC Lite Edition ;
+; Revision Name                   ; JERV5                                          ;
+; Top-level Entity Name           ; controlador_JER                                ;
+; Family                          ; Cyclone V                                      ;
+; Logic utilization (in ALMs)     ; N/A                                            ;
+; Total registers                 ; 255                                            ;
+; Total pins                      ; 37                                             ;
+; Total virtual pins              ; 0                                              ;
+; Total block memory bits         ; 2,611,200                                      ;
+; Total DSP Blocks                ; 2                                              ;
+; Total HSSI RX PCSs              ; 0                                              ;
+; Total HSSI PMA RX Deserializers ; 0                                              ;
+; Total HSSI TX PCSs              ; 0                                              ;
+; Total HSSI PMA TX Serializers   ; 0                                              ;
+; Total PLLs                      ; 0                                              ;
+; Total DLLs                      ; 0                                              ;
++---------------------------------+------------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; controlador_JER    ; JERV5              ;
+; Family name                                                                     ; Cyclone V          ; Cyclone V          ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and Timing Analyzer during compilation                ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Create Debugging Nodes for IP Cores                                             ; Off                ; Off                ;
+; Preserve fewer node names                                                       ; On                 ; On                 ;
+; Intel FPGA IP Evaluation Mode                                                   ; Enable             ; Enable             ;
+; Verilog Version                                                                 ; Verilog_2001       ; Verilog_2001       ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Extract Verilog State Machines                                                  ; On                 ; On                 ;
+; Extract VHDL State Machines                                                     ; On                 ; On                 ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Iteration limit for non-constant Verilog loops                                  ; 250                ; 250                ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Power-Up Don't Care                                                             ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto ROM Replacement                                                            ; On                 ; On                 ;
+; Auto RAM Replacement                                                            ; On                 ; On                 ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Auto Clock Enable Replacement                                                   ; On                 ; On                 ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; Synchronization Register Chain Length                                           ; 3                  ; 3                  ;
+; Power Optimization During Synthesis                                             ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 100                ; 100                ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; SDC constraint protection                                                       ; Off                ; Off                ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 12          ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 12          ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processor 3            ;   0.0%      ;
+;     Processor 4            ;   0.0%      ;
+;     Processor 5            ;   0.0%      ;
+;     Processor 6            ;   0.0%      ;
+;     Processor 7            ;   0.0%      ;
+;     Processor 8            ;   0.0%      ;
+;     Processors 9-12        ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                ;
++----------------------------------+-----------------+----------------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                              ; File Name with Absolute Path                                                                                  ; Library ;
++----------------------------------+-----------------+----------------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+; controlador_JER.v                ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v       ;         ;
+; contador_largura.v               ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/contador_largura.v      ;         ;
+; contador_altura.v                ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/contador_altura.v       ;         ;
+; seletor_algoritmo.v              ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/seletor_algoritmo.v     ;         ;
+; zoom_in_nni.v                    ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_in_nni.v           ;         ;
+; zoom_in_pixel_rep.v              ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_in_pixel_rep.v     ;         ;
+; zoom_out_nni.v                   ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_nni.v          ;         ;
+; zoom_out_media_blocos.v          ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v ;         ;
+; divisor_freq.v                   ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/divisor_freq.v          ;         ;
+; vga_driver.v                     ; yes             ; User Verilog HDL File                  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/vga_driver.v            ;         ;
+; img1.v                           ; yes             ; User Wizard-Generated File             ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/img1.v                  ;         ;
+; ram1p.v                          ; yes             ; User Wizard-Generated File             ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/ram1p.v                 ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/altsyncram.tdf                                      ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/stratix_ram_block.inc                               ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/lpm_mux.inc                                         ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/lpm_decode.inc                                      ;         ;
+; aglobal231.inc                   ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/aglobal231.inc                                      ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/a_rdenreg.inc                                       ;         ;
+; altrom.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/altrom.inc                                          ;         ;
+; altram.inc                       ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/altram.inc                                          ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                           ; c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/altdpram.inc                                        ;         ;
+; db/altsyncram_2qf1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_2qf1.tdf  ;         ;
+; mif/j.e.r.mif                    ; yes             ; Auto-Found Memory Initialization File  ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/mif/j.e.r.mif           ;         ;
+; db/decode_01a.tdf                ; yes             ; Auto-Generated Megafunction            ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/decode_01a.tdf       ;         ;
+; db/mux_nfb.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/mux_nfb.tdf          ;         ;
+; db/altsyncram_3rl1.tdf           ; yes             ; Auto-Generated Megafunction            ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_3rl1.tdf  ;         ;
+; db/decode_3na.tdf                ; yes             ; Auto-Generated Megafunction            ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/decode_3na.tdf       ;         ;
+; db/decode_s2a.tdf                ; yes             ; Auto-Generated Megafunction            ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/decode_s2a.tdf       ;         ;
+; db/mux_jhb.tdf                   ; yes             ; Auto-Generated Megafunction            ; C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/mux_jhb.tdf          ;         ;
++----------------------------------+-----------------+----------------------------------------+---------------------------------------------------------------------------------------------------------------+---------+
+
+
++------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                  ;
++---------------------------------------------+--------------------------------+
+; Resource                                    ; Usage                          ;
++---------------------------------------------+--------------------------------+
+; Estimate of Logic utilization (ALMs needed) ; 507                            ;
+;                                             ;                                ;
+; Combinational ALUT usage for logic          ; 741                            ;
+;     -- 7 input functions                    ; 2                              ;
+;     -- 6 input functions                    ; 258                            ;
+;     -- 5 input functions                    ; 136                            ;
+;     -- 4 input functions                    ; 147                            ;
+;     -- <=3 input functions                  ; 198                            ;
+;                                             ;                                ;
+; Dedicated logic registers                   ; 255                            ;
+;                                             ;                                ;
+; I/O pins                                    ; 37                             ;
+; Total MLAB memory bits                      ; 0                              ;
+; Total block memory bits                     ; 2611200                        ;
+;                                             ;                                ;
+; Total DSP Blocks                            ; 2                              ;
+;                                             ;                                ;
+; Maximum fan-out node                        ; divisor_freq:clk_25MHZ|clk_out ;
+; Maximum fan-out                             ; 584                            ;
+; Total fan-out                               ; 9791                           ;
+; Average fan-out                             ; 6.99                           ;
++---------------------------------------------+--------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                               ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
+; Compilation Hierarchy Node                ; Combinational ALUTs ; Dedicated Logic Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                   ; Entity Name           ; Library Name ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
+; |controlador_JER                          ; 741 (454)           ; 255 (163)                 ; 2611200           ; 2          ; 37   ; 0            ; |controlador_JER                                                                                                      ; controlador_JER       ; work         ;
+;    |contador_altura:cont_alt|             ; 17 (17)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|contador_altura:cont_alt                                                                             ; contador_altura       ; work         ;
+;    |contador_largura:cont_larg|           ; 16 (16)             ; 10 (10)                   ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|contador_largura:cont_larg                                                                           ; contador_largura      ; work         ;
+;    |divisor_freq:clk_25MHZ|               ; 1 (1)               ; 1 (1)                     ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|divisor_freq:clk_25MHZ                                                                               ; divisor_freq          ; work         ;
+;    |img1:ROM_inst|                        ; 3 (0)               ; 4 (0)                     ; 153600            ; 0          ; 0    ; 0            ; |controlador_JER|img1:ROM_inst                                                                                        ; img1                  ; work         ;
+;       |altsyncram:altsyncram_component|   ; 3 (0)               ; 4 (0)                     ; 153600            ; 0          ; 0    ; 0            ; |controlador_JER|img1:ROM_inst|altsyncram:altsyncram_component                                                        ; altsyncram            ; work         ;
+;          |altsyncram_2qf1:auto_generated| ; 3 (0)               ; 4 (4)                     ; 153600            ; 0          ; 0    ; 0            ; |controlador_JER|img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated                         ; altsyncram_2qf1       ; work         ;
+;             |decode_01a:rden_decode|      ; 3 (3)               ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated|decode_01a:rden_decode  ; decode_01a            ; work         ;
+;    |ram1p:RAM_inst|                       ; 81 (0)              ; 12 (0)                    ; 2457600           ; 0          ; 0    ; 0            ; |controlador_JER|ram1p:RAM_inst                                                                                       ; ram1p                 ; work         ;
+;       |altsyncram:altsyncram_component|   ; 81 (0)              ; 12 (0)                    ; 2457600           ; 0          ; 0    ; 0            ; |controlador_JER|ram1p:RAM_inst|altsyncram:altsyncram_component                                                       ; altsyncram            ; work         ;
+;          |altsyncram_3rl1:auto_generated| ; 81 (0)              ; 12 (12)                   ; 2457600           ; 0          ; 0    ; 0            ; |controlador_JER|ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated                        ; altsyncram_3rl1       ; work         ;
+;             |decode_3na:decode3|          ; 43 (43)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated|decode_3na:decode3     ; decode_3na            ; work         ;
+;             |decode_s2a:rden_decode|      ; 38 (38)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated|decode_s2a:rden_decode ; decode_s2a            ; work         ;
+;    |seletor_algoritmo:seletor|            ; 88 (33)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|seletor_algoritmo:seletor                                                                            ; seletor_algoritmo     ; work         ;
+;       |zoom_out_media_blocos:media_zout|  ; 55 (55)             ; 0 (0)                     ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|seletor_algoritmo:seletor|zoom_out_media_blocos:media_zout                                           ; zoom_out_media_blocos ; work         ;
+;    |vga_driver:ctrl_VGA|                  ; 81 (81)             ; 55 (55)                   ; 0                 ; 0          ; 0    ; 0            ; |controlador_JER|vga_driver:ctrl_VGA                                                                                  ; vga_driver            ; work         ;
++-------------------------------------------+---------------------+---------------------------+-------------------+------------+------+--------------+-----------------------------------------------------------------------------------------------------------------------+-----------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis RAM Summary                                                                                                                                                                      ;
++------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+---------+-----------------+
+; Name                                                                                     ; Type ; Mode        ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size    ; MIF             ;
++------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+---------+-----------------+
+; img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated|ALTSYNCRAM  ; AUTO ; ROM         ; 19200        ; 8            ; --           ; --           ; 153600  ; ./mif/J.E.R.mif ;
+; ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated|ALTSYNCRAM ; AUTO ; Single Port ; 307200       ; 8            ; --           ; --           ; 2457600 ; None            ;
++------------------------------------------------------------------------------------------+------+-------------+--------------+--------------+--------------+--------------+---------+-----------------+
+
+
++-----------------------------------------------+
+; Analysis & Synthesis DSP Block Usage Summary  ;
++---------------------------------+-------------+
+; Statistic                       ; Number Used ;
++---------------------------------+-------------+
+; Independent 18x18 plus 36       ; 2           ;
+; Total number of DSP blocks      ; 2           ;
+;                                 ;             ;
+; Fixed Point Unsigned Multiplier ; 2           ;
++---------------------------------+-------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis IP Cores Summary                                                                             ;
++--------+--------------+---------+--------------+--------------+---------------------------------+-----------------+
+; Vendor ; IP Core Name ; Version ; Release Date ; License Type ; Entity Instance                 ; IP Include File ;
++--------+--------------+---------+--------------+--------------+---------------------------------+-----------------+
+; Altera ; RAM: 1-PORT  ; 23.1    ; N/A          ; N/A          ; |controlador_JER|ram1p:RAM_inst ; ram1p.v         ;
+; Altera ; ROM: 1-PORT  ; 23.1    ; N/A          ; N/A          ; |controlador_JER|img1:ROM_inst  ; img1.v          ;
++--------+--------------+---------+--------------+--------------+---------------------------------+-----------------+
+
+
+Encoding Type:  One-Hot
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |controlador_JER|estado_media                                                                                                                                                                                                                                                                                                                                           ;
++--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+; Name               ; estado_media.01111 ; estado_media.01110 ; estado_media.01101 ; estado_media.01100 ; estado_media.01011 ; estado_media.01010 ; estado_media.01001 ; estado_media.01000 ; estado_media.00111 ; estado_media.00110 ; estado_media.00101 ; estado_media.00100 ; estado_media.00011 ; estado_media.00010 ; estado_media.00001 ; estado_media.00000 ; estado_media.10000 ;
++--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+; estado_media.00000 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ;
+; estado_media.00001 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 1                  ; 0                  ;
+; estado_media.00010 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.00011 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.00100 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.00101 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.00110 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.00111 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01000 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01001 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01010 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01011 ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01100 ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01101 ; 0                  ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01110 ; 0                  ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.01111 ; 1                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 0                  ;
+; estado_media.10000 ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 0                  ; 1                  ; 1                  ;
++--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+--------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |controlador_JER|vga_driver:ctrl_VGA|v_state                                                           ;
++------------------------+----------------------+-----------------------+-----------------------+------------------------+
+; Name                   ; v_state.V_BACK_STATE ; v_state.V_PULSE_STATE ; v_state.V_FRONT_STATE ; v_state.V_ACTIVE_STATE ;
++------------------------+----------------------+-----------------------+-----------------------+------------------------+
+; v_state.V_ACTIVE_STATE ; 0                    ; 0                     ; 0                     ; 0                      ;
+; v_state.V_FRONT_STATE  ; 0                    ; 0                     ; 1                     ; 1                      ;
+; v_state.V_PULSE_STATE  ; 0                    ; 1                     ; 0                     ; 1                      ;
+; v_state.V_BACK_STATE   ; 1                    ; 0                     ; 0                     ; 1                      ;
++------------------------+----------------------+-----------------------+-----------------------+------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------------+
+; State Machine - |controlador_JER|vga_driver:ctrl_VGA|h_state                                                           ;
++------------------------+----------------------+-----------------------+-----------------------+------------------------+
+; Name                   ; h_state.H_BACK_STATE ; h_state.H_PULSE_STATE ; h_state.H_FRONT_STATE ; h_state.H_ACTIVE_STATE ;
++------------------------+----------------------+-----------------------+-----------------------+------------------------+
+; h_state.H_ACTIVE_STATE ; 0                    ; 0                     ; 0                     ; 0                      ;
+; h_state.H_FRONT_STATE  ; 0                    ; 0                     ; 1                     ; 1                      ;
+; h_state.H_PULSE_STATE  ; 0                    ; 1                     ; 0                     ; 1                      ;
+; h_state.H_BACK_STATE   ; 1                    ; 0                     ; 0                     ; 1                      ;
++------------------------+----------------------+-----------------------+-----------------------+------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                              ;
++----------------------------------------+----------------------------------------+
+; Register name                          ; Reason for Removal                     ;
++----------------------------------------+----------------------------------------+
+; altura_imagem[0,9]                     ; Stuck at GND due to stuck port data_in ;
+; largura_imagem[0..2]                   ; Stuck at GND due to stuck port data_in ;
+; largura_imagem[9]                      ; Merged with altura_imagem[8]           ;
+; largura_imagem[3]                      ; Merged with altura_imagem[1]           ;
+; estado_media~2                         ; Lost fanout                            ;
+; estado_media~3                         ; Lost fanout                            ;
+; estado_media~4                         ; Lost fanout                            ;
+; estado_media~5                         ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~5          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~6          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~7          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~8          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~9          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~10         ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~11         ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|v_state~12         ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~5          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~6          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~7          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~8          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~9          ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~10         ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~11         ; Lost fanout                            ;
+; vga_driver:ctrl_VGA|h_state~12         ; Lost fanout                            ;
+; soma_pixels[12..15]                    ; Lost fanout                            ;
+; Total Number of Removed Registers = 31 ;                                        ;
++----------------------------------------+----------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                       ;
++------------------+---------------------------+--------------------------------------------------------------------+
+; Register name    ; Reason for Removal        ; Registers Removed due to This Register                             ;
++------------------+---------------------------+--------------------------------------------------------------------+
+; altura_imagem[0] ; Stuck at GND              ; soma_pixels[15], soma_pixels[14], soma_pixels[13], soma_pixels[12] ;
+;                  ; due to stuck port data_in ;                                                                    ;
++------------------+---------------------------+--------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 255   ;
+; Number of registers using Synchronous Clear  ; 182   ;
+; Number of registers using Synchronous Load   ; 10    ;
+; Number of registers using Asynchronous Clear ; 1     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 106   ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 27 bits   ; 54 LEs        ; 0 LEs                ; 54 LEs                 ; Yes        ; |controlador_JER|pixel_RAM_wr[4]                                                                                                 ;
+; 4:1                ; 27 bits   ; 54 LEs        ; 0 LEs                ; 54 LEs                 ; Yes        ; |controlador_JER|endereco_RAM_rd[3]                                                                                              ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |controlador_JER|contador_altura:cont_alt|cont_altura[0]                                                                         ;
+; 4:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |controlador_JER|contador_largura:cont_larg|cont_largura[7]                                                                      ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |controlador_JER|pixel_rom_delayed[6]                                                                                            ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |controlador_JER|pixel_final[3]                                                                                                  ;
+; 10:1               ; 10 bits   ; 60 LEs        ; 0 LEs                ; 60 LEs                 ; Yes        ; |controlador_JER|vga_driver:ctrl_VGA|v_counter[9]                                                                                ;
+; 10:1               ; 10 bits   ; 60 LEs        ; 0 LEs                ; 60 LEs                 ; Yes        ; |controlador_JER|vga_driver:ctrl_VGA|h_counter[4]                                                                                ;
+; 12:1               ; 16 bits   ; 128 LEs       ; 0 LEs                ; 128 LEs                ; Yes        ; |controlador_JER|soma_pixels[5]                                                                                                  ;
+; 34:1               ; 8 bits    ; 176 LEs       ; 176 LEs              ; 0 LEs                  ; Yes        ; |controlador_JER|pixel_vga_delayed[4]                                                                                            ;
+; 32:1               ; 3 bits    ; 63 LEs        ; 30 LEs               ; 33 LEs                 ; Yes        ; |controlador_JER|endereco_rom[3]                                                                                                 ;
+; 5:1                ; 8 bits    ; 24 LEs        ; 24 LEs               ; 0 LEs                  ; No         ; |controlador_JER|ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated|mux_jhb:mux2|l3_w1_n4_mux_dataout ;
+; 6:1                ; 3 bits    ; 12 LEs        ; 6 LEs                ; 6 LEs                  ; No         ; |controlador_JER|estado_media                                                                                                    ;
+; 7:1                ; 12 bits   ; 48 LEs        ; 48 LEs               ; 0 LEs                  ; No         ; |controlador_JER|estado_media                                                                                                    ;
+; 16:1               ; 9 bits    ; 90 LEs        ; 54 LEs               ; 36 LEs                 ; No         ; |controlador_JER|seletor_algoritmo:seletor|zoom_out_media_blocos:media_zout|Add1                                                 ;
+; 16:1               ; 9 bits    ; 90 LEs        ; 54 LEs               ; 36 LEs                 ; No         ; |controlador_JER|seletor_algoritmo:seletor|zoom_out_media_blocos:media_zout|Add10                                                ;
+; 30:1               ; 3 bits    ; 60 LEs        ; 27 LEs               ; 33 LEs                 ; No         ; |controlador_JER|x_rom_select[6]                                                                                                 ;
+; 30:1               ; 5 bits    ; 100 LEs       ; 45 LEs               ; 55 LEs                 ; No         ; |controlador_JER|y_rom_select[4]                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------+
+; Source assignments for img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated ;
++---------------------------------+--------------------+------+---------------------------------------+
+; Assignment                      ; Value              ; From ; To                                    ;
++---------------------------------+--------------------+------+---------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                     ;
++---------------------------------+--------------------+------+---------------------------------------+
+
+
++------------------------------------------------------------------------------------------------------+
+; Source assignments for ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated ;
++---------------------------------+--------------------+------+----------------------------------------+
+; Assignment                      ; Value              ; From ; To                                     ;
++---------------------------------+--------------------+------+----------------------------------------+
+; OPTIMIZE_POWER_DURING_SYNTHESIS ; NORMAL_COMPILATION ; -    ; -                                      ;
++---------------------------------+--------------------+------+----------------------------------------+
+
+
++---------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |controlador_JER ;
++----------------+-------+--------------------------------------------------------+
+; Parameter Name ; Value ; Type                                                   ;
++----------------+-------+--------------------------------------------------------+
+; ORIG_WIDTH     ; 160   ; Signed Integer                                         ;
+; ORIG_HEIGHT    ; 120   ; Signed Integer                                         ;
+; VGA_WIDTH      ; 640   ; Signed Integer                                         ;
+; VGA_HEIGHT     ; 480   ; Signed Integer                                         ;
++----------------+-------+--------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: img1:ROM_inst|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+--------------------------------+
+; Parameter Name                     ; Value                ; Type                           ;
++------------------------------------+----------------------+--------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                        ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                     ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                   ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                   ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                 ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                        ;
+; OPERATION_MODE                     ; ROM                  ; Untyped                        ;
+; WIDTH_A                            ; 8                    ; Signed Integer                 ;
+; WIDTHAD_A                          ; 15                   ; Signed Integer                 ;
+; NUMWORDS_A                         ; 19200                ; Signed Integer                 ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                        ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                        ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                        ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                        ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                        ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                        ;
+; WIDTH_B                            ; 1                    ; Untyped                        ;
+; WIDTHAD_B                          ; 1                    ; Untyped                        ;
+; NUMWORDS_B                         ; 1                    ; Untyped                        ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                        ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                        ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                        ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                        ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                        ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                        ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                        ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                        ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                        ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                        ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                        ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                        ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                 ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                        ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                        ;
+; BYTE_SIZE                          ; 8                    ; Untyped                        ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                        ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                        ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                        ;
+; INIT_FILE                          ; ./mif/J.E.R.mif      ; Untyped                        ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                        ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                        ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                        ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                        ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                        ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                        ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                        ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                        ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                        ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                        ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                        ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                        ;
+; CBXI_PARAMETER                     ; altsyncram_2qf1      ; Untyped                        ;
++------------------------------------+----------------------+--------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++---------------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: ram1p:RAM_inst|altsyncram:altsyncram_component ;
++------------------------------------+----------------------+---------------------------------+
+; Parameter Name                     ; Value                ; Type                            ;
++------------------------------------+----------------------+---------------------------------+
+; BYTE_SIZE_BLOCK                    ; 8                    ; Untyped                         ;
+; AUTO_CARRY_CHAINS                  ; ON                   ; AUTO_CARRY                      ;
+; IGNORE_CARRY_BUFFERS               ; OFF                  ; IGNORE_CARRY                    ;
+; AUTO_CASCADE_CHAINS                ; ON                   ; AUTO_CASCADE                    ;
+; IGNORE_CASCADE_BUFFERS             ; OFF                  ; IGNORE_CASCADE                  ;
+; WIDTH_BYTEENA                      ; 1                    ; Untyped                         ;
+; OPERATION_MODE                     ; SINGLE_PORT          ; Untyped                         ;
+; WIDTH_A                            ; 8                    ; Signed Integer                  ;
+; WIDTHAD_A                          ; 19                   ; Signed Integer                  ;
+; NUMWORDS_A                         ; 307200               ; Signed Integer                  ;
+; OUTDATA_REG_A                      ; CLOCK0               ; Untyped                         ;
+; ADDRESS_ACLR_A                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_A                   ; NONE                 ; Untyped                         ;
+; INDATA_ACLR_A                      ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_A                     ; NONE                 ; Untyped                         ;
+; WIDTH_B                            ; 1                    ; Untyped                         ;
+; WIDTHAD_B                          ; 1                    ; Untyped                         ;
+; NUMWORDS_B                         ; 1                    ; Untyped                         ;
+; INDATA_REG_B                       ; CLOCK1               ; Untyped                         ;
+; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                         ;
+; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                         ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                         ;
+; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                         ;
+; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                         ;
+; INDATA_ACLR_B                      ; NONE                 ; Untyped                         ;
+; WRCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; ADDRESS_ACLR_B                     ; NONE                 ; Untyped                         ;
+; OUTDATA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; RDCONTROL_ACLR_B                   ; NONE                 ; Untyped                         ;
+; BYTEENA_ACLR_B                     ; NONE                 ; Untyped                         ;
+; WIDTH_BYTEENA_A                    ; 1                    ; Signed Integer                  ;
+; WIDTH_BYTEENA_B                    ; 1                    ; Untyped                         ;
+; RAM_BLOCK_TYPE                     ; AUTO                 ; Untyped                         ;
+; BYTE_SIZE                          ; 8                    ; Untyped                         ;
+; READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE            ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_A      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; READ_DURING_WRITE_MODE_PORT_B      ; NEW_DATA_NO_NBE_READ ; Untyped                         ;
+; INIT_FILE                          ; UNUSED               ; Untyped                         ;
+; INIT_FILE_LAYOUT                   ; PORT_A               ; Untyped                         ;
+; MAXIMUM_DEPTH                      ; 0                    ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_A               ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_INPUT_B               ; NORMAL               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_A              ; BYPASS               ; Untyped                         ;
+; CLOCK_ENABLE_OUTPUT_B              ; NORMAL               ; Untyped                         ;
+; CLOCK_ENABLE_CORE_A                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; CLOCK_ENABLE_CORE_B                ; USE_INPUT_CLKEN      ; Untyped                         ;
+; ENABLE_ECC                         ; FALSE                ; Untyped                         ;
+; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                         ;
+; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                         ;
+; DEVICE_FAMILY                      ; Cyclone V            ; Untyped                         ;
+; CBXI_PARAMETER                     ; altsyncram_3rl1      ; Untyped                         ;
++------------------------------------+----------------------+---------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: vga_driver:ctrl_VGA ;
++----------------+------------+------------------------------------+
+; Parameter Name ; Value      ; Type                               ;
++----------------+------------+------------------------------------+
+; H_ACTIVE       ; 1001111111 ; Unsigned Binary                    ;
+; H_FRONT        ; 0000001111 ; Unsigned Binary                    ;
+; H_PULSE        ; 0001011111 ; Unsigned Binary                    ;
+; H_BACK         ; 0000101111 ; Unsigned Binary                    ;
+; V_ACTIVE       ; 0111011111 ; Unsigned Binary                    ;
+; V_FRONT        ; 0000001001 ; Unsigned Binary                    ;
+; V_PULSE        ; 0000000001 ; Unsigned Binary                    ;
+; V_BACK         ; 0000100000 ; Unsigned Binary                    ;
+; LOW            ; 0          ; Unsigned Binary                    ;
+; HIGH           ; 1          ; Unsigned Binary                    ;
+; H_ACTIVE_STATE ; 00000000   ; Unsigned Binary                    ;
+; H_FRONT_STATE  ; 00000001   ; Unsigned Binary                    ;
+; H_PULSE_STATE  ; 00000010   ; Unsigned Binary                    ;
+; H_BACK_STATE   ; 00000011   ; Unsigned Binary                    ;
+; V_ACTIVE_STATE ; 00000000   ; Unsigned Binary                    ;
+; V_FRONT_STATE  ; 00000001   ; Unsigned Binary                    ;
+; V_PULSE_STATE  ; 00000010   ; Unsigned Binary                    ;
+; V_BACK_STATE   ; 00000011   ; Unsigned Binary                    ;
++----------------+------------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++--------------------------------------------------------------------------------------------+
+; altsyncram Parameter Settings by Entity Instance                                           ;
++-------------------------------------------+------------------------------------------------+
+; Name                                      ; Value                                          ;
++-------------------------------------------+------------------------------------------------+
+; Number of entity instances                ; 2                                              ;
+; Entity Instance                           ; img1:ROM_inst|altsyncram:altsyncram_component  ;
+;     -- OPERATION_MODE                     ; ROM                                            ;
+;     -- WIDTH_A                            ; 8                                              ;
+;     -- NUMWORDS_A                         ; 19200                                          ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                         ;
+;     -- WIDTH_B                            ; 1                                              ;
+;     -- NUMWORDS_B                         ; 1                                              ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
+; Entity Instance                           ; ram1p:RAM_inst|altsyncram:altsyncram_component ;
+;     -- OPERATION_MODE                     ; SINGLE_PORT                                    ;
+;     -- WIDTH_A                            ; 8                                              ;
+;     -- NUMWORDS_A                         ; 307200                                         ;
+;     -- OUTDATA_REG_A                      ; CLOCK0                                         ;
+;     -- WIDTH_B                            ; 1                                              ;
+;     -- NUMWORDS_B                         ; 1                                              ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                         ;
+;     -- OUTDATA_REG_B                      ; UNREGISTERED                                   ;
+;     -- RAM_BLOCK_TYPE                     ; AUTO                                           ;
+;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                      ;
++-------------------------------------------+------------------------------------------------+
+
+
++----------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "contador_altura:cont_alt"                                                           ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; Port ; Type   ; Severity ; Details                                                                             ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+; done ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 255                         ;
+;     CLR               ; 1                           ;
+;     ENA               ; 29                          ;
+;     ENA SCLR          ; 69                          ;
+;     ENA SCLR SLD      ; 8                           ;
+;     SCLR              ; 105                         ;
+;     SLD               ; 2                           ;
+;     plain             ; 41                          ;
+; arriav_lcell_comb     ; 742                         ;
+;     arith             ; 114                         ;
+;         0 data inputs ; 6                           ;
+;         1 data inputs ; 49                          ;
+;         2 data inputs ; 9                           ;
+;         3 data inputs ; 1                           ;
+;         4 data inputs ; 37                          ;
+;         5 data inputs ; 12                          ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 626                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 1                           ;
+;         2 data inputs ; 56                          ;
+;         3 data inputs ; 76                          ;
+;         4 data inputs ; 110                         ;
+;         5 data inputs ; 124                         ;
+;         6 data inputs ; 258                         ;
+; arriav_mac            ; 2                           ;
+; boundary_port         ; 37                          ;
+; stratixv_ram_block    ; 328                         ;
+;                       ;                             ;
+; Max LUT depth         ; 9.70                        ;
+; Average LUT depth     ; 3.94                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:01     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus Prime Analysis & Synthesis
+    Info: Version 23.1std.0 Build 991 11/28/2023 SC Lite Edition
+    Info: Processing started: Fri Sep 26 20:50:56 2025
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off JERV5 -c JERV5
+Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
+Info (20030): Parallel compilation is enabled and will use 12 of the 12 processors detected
+Info (12021): Found 1 design units, including 1 entities, in source file controlador_jer.v
+    Info (12023): Found entity 1: controlador_JER File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file contador_largura.v
+    Info (12023): Found entity 1: contador_largura File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/contador_largura.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file contador_altura.v
+    Info (12023): Found entity 1: contador_altura File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/contador_altura.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file seletor_algoritmo.v
+    Info (12023): Found entity 1: seletor_algoritmo File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/seletor_algoritmo.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file zoom_in_nni.v
+    Info (12023): Found entity 1: zoom_in_nni File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_in_nni.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file zoom_in_pixel_rep.v
+    Info (12023): Found entity 1: zoom_in_pixel_rep File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_in_pixel_rep.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file zoom_out_nni.v
+    Info (12023): Found entity 1: zoom_out_nni File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_nni.v Line: 2
+Info (12021): Found 1 design units, including 1 entities, in source file zoom_out_media_blocos.v
+    Info (12023): Found entity 1: zoom_out_media_blocos File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file divisor_freq.v
+    Info (12023): Found entity 1: divisor_freq File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/divisor_freq.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file vga_driver.v
+    Info (12023): Found entity 1: vga_driver File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/vga_driver.v Line: 1
+Info (12021): Found 1 design units, including 1 entities, in source file img1.v
+    Info (12023): Found entity 1: img1 File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/img1.v Line: 40
+Info (12021): Found 1 design units, including 1 entities, in source file ram1p.v
+    Info (12023): Found entity 1: ram1p File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/ram1p.v Line: 40
+Info (12127): Elaborating entity "controlador_JER" for the top level hierarchy
+Warning (10036): Verilog HDL or VHDL warning at controlador_JER.v(447): object "vga_x" assigned a value but never read File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 447
+Warning (10036): Verilog HDL or VHDL warning at controlador_JER.v(447): object "vga_y" assigned a value but never read File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 447
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(62): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 62
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(63): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 63
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(68): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 68
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(69): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 69
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(73): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 73
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(74): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 74
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(78): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 78
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(79): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 79
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(83): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 83
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(84): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 84
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(88): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 88
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(89): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 89
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(96): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 96
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(97): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 97
+Info (10264): Verilog HDL Case Statement information at controlador_JER.v(190): all case item expressions in this case statement are onehot File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 190
+Info (10264): Verilog HDL Case Statement information at controlador_JER.v(210): all case item expressions in this case statement are onehot File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 210
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(228): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 228
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(229): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 229
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(237): truncated value with size 32 to match size of target (15) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 237
+Info (10264): Verilog HDL Case Statement information at controlador_JER.v(331): all case item expressions in this case statement are onehot File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 331
+Warning (10230): Verilog HDL assignment warning at controlador_JER.v(369): truncated value with size 12 to match size of target (8) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 369
+Info (12128): Elaborating entity "divisor_freq" for hierarchy "divisor_freq:clk_25MHZ" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 28
+Info (12128): Elaborating entity "contador_largura" for hierarchy "contador_largura:cont_larg" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 116
+Info (12128): Elaborating entity "contador_altura" for hierarchy "contador_altura:cont_alt" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 126
+Info (12128): Elaborating entity "seletor_algoritmo" for hierarchy "seletor_algoritmo:seletor" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 181
+Info (10264): Verilog HDL Case Statement information at seletor_algoritmo.v(105): all case item expressions in this case statement are onehot File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/seletor_algoritmo.v Line: 105
+Info (12128): Elaborating entity "zoom_in_nni" for hierarchy "seletor_algoritmo:seletor|zoom_in_nni:nni_zin" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/seletor_algoritmo.v Line: 49
+Info (12128): Elaborating entity "zoom_in_pixel_rep" for hierarchy "seletor_algoritmo:seletor|zoom_in_pixel_rep:pixel_rep_zin" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/seletor_algoritmo.v Line: 59
+Info (12128): Elaborating entity "zoom_out_nni" for hierarchy "seletor_algoritmo:seletor|zoom_out_nni:nni_zout" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/seletor_algoritmo.v Line: 73
+Info (12128): Elaborating entity "zoom_out_media_blocos" for hierarchy "seletor_algoritmo:seletor|zoom_out_media_blocos:media_zout" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/seletor_algoritmo.v Line: 88
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(35): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 35
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(36): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 36
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(37): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 37
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(40): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 40
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(41): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 41
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(42): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 42
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(43): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 43
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(46): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 46
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(47): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 47
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(48): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 48
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(49): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 49
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(52): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 52
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(53): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 53
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(54): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 54
+Warning (10230): Verilog HDL assignment warning at zoom_out_media_blocos.v(55): truncated value with size 32 to match size of target (10) File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/zoom_out_media_blocos.v Line: 55
+Info (12128): Elaborating entity "img1" for hierarchy "img1:ROM_inst" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 246
+Info (12128): Elaborating entity "altsyncram" for hierarchy "img1:ROM_inst|altsyncram:altsyncram_component" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/img1.v Line: 82
+Info (12130): Elaborated megafunction instantiation "img1:ROM_inst|altsyncram:altsyncram_component" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/img1.v Line: 82
+Info (12133): Instantiated megafunction "img1:ROM_inst|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/img1.v Line: 82
+    Info (12134): Parameter "address_aclr_a" = "NONE"
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "init_file" = "./mif/J.E.R.mif"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "19200"
+    Info (12134): Parameter "operation_mode" = "ROM"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "widthad_a" = "15"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_2qf1.tdf
+    Info (12023): Found entity 1: altsyncram_2qf1 File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_2qf1.tdf Line: 32
+Info (12128): Elaborating entity "altsyncram_2qf1" for hierarchy "img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated" File: c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_01a.tdf
+    Info (12023): Found entity 1: decode_01a File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/decode_01a.tdf Line: 23
+Info (12128): Elaborating entity "decode_01a" for hierarchy "img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated|decode_01a:rden_decode" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_2qf1.tdf Line: 41
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_nfb.tdf
+    Info (12023): Found entity 1: mux_nfb File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/mux_nfb.tdf Line: 23
+Info (12128): Elaborating entity "mux_nfb" for hierarchy "img1:ROM_inst|altsyncram:altsyncram_component|altsyncram_2qf1:auto_generated|mux_nfb:mux2" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_2qf1.tdf Line: 42
+Info (12128): Elaborating entity "ram1p" for hierarchy "ram1p:RAM_inst" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 403
+Info (12128): Elaborating entity "altsyncram" for hierarchy "ram1p:RAM_inst|altsyncram:altsyncram_component" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/ram1p.v Line: 86
+Info (12130): Elaborated megafunction instantiation "ram1p:RAM_inst|altsyncram:altsyncram_component" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/ram1p.v Line: 86
+Info (12133): Instantiated megafunction "ram1p:RAM_inst|altsyncram:altsyncram_component" with the following parameter: File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/ram1p.v Line: 86
+    Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
+    Info (12134): Parameter "clock_enable_output_a" = "BYPASS"
+    Info (12134): Parameter "intended_device_family" = "Cyclone V"
+    Info (12134): Parameter "lpm_hint" = "ENABLE_RUNTIME_MOD=NO"
+    Info (12134): Parameter "lpm_type" = "altsyncram"
+    Info (12134): Parameter "numwords_a" = "307200"
+    Info (12134): Parameter "operation_mode" = "SINGLE_PORT"
+    Info (12134): Parameter "outdata_aclr_a" = "NONE"
+    Info (12134): Parameter "outdata_reg_a" = "CLOCK0"
+    Info (12134): Parameter "power_up_uninitialized" = "FALSE"
+    Info (12134): Parameter "read_during_write_mode_port_a" = "NEW_DATA_NO_NBE_READ"
+    Info (12134): Parameter "widthad_a" = "19"
+    Info (12134): Parameter "width_a" = "8"
+    Info (12134): Parameter "width_byteena_a" = "1"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_3rl1.tdf
+    Info (12023): Found entity 1: altsyncram_3rl1 File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_3rl1.tdf Line: 34
+Info (12128): Elaborating entity "altsyncram_3rl1" for hierarchy "ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated" File: c:/intelfpga_lite/23.1std/quartus/libraries/megafunctions/altsyncram.tdf Line: 792
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_3na.tdf
+    Info (12023): Found entity 1: decode_3na File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/decode_3na.tdf Line: 23
+Info (12128): Elaborating entity "decode_3na" for hierarchy "ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated|decode_3na:decode3" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_3rl1.tdf Line: 45
+Info (12021): Found 1 design units, including 1 entities, in source file db/decode_s2a.tdf
+    Info (12023): Found entity 1: decode_s2a File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/decode_s2a.tdf Line: 23
+Info (12128): Elaborating entity "decode_s2a" for hierarchy "ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated|decode_s2a:rden_decode" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_3rl1.tdf Line: 46
+Info (12021): Found 1 design units, including 1 entities, in source file db/mux_jhb.tdf
+    Info (12023): Found entity 1: mux_jhb File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/mux_jhb.tdf Line: 23
+Info (12128): Elaborating entity "mux_jhb" for hierarchy "ram1p:RAM_inst|altsyncram:altsyncram_component|altsyncram_3rl1:auto_generated|mux_jhb:mux2" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/db/altsyncram_3rl1.tdf Line: 47
+Info (12128): Elaborating entity "vga_driver" for hierarchy "vga_driver:ctrl_VGA" File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 502
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "sync" is stuck at GND File: C:/Users/Enzo/Downloads/J.E.R. - Coprocessador Grafico/J.E.R. - Coprocessador Grafico/controlador_JER.v Line: 11
+Info (286030): Timing-Driven Synthesis is running
+Info (17049): 24 registers lost all their fanouts during netlist optimizations.
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Info (21057): Implemented 1232 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 8 input pins
+    Info (21059): Implemented 29 output pins
+    Info (21061): Implemented 865 logic cells
+    Info (21064): Implemented 328 RAM segments
+    Info (21062): Implemented 2 DSP elements
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 38 warnings
+    Info: Peak virtual memory: 4949 megabytes
+    Info: Processing ended: Fri Sep 26 20:51:04 2025
+    Info: Elapsed time: 00:00:08
+    Info: Total CPU time (on all processors): 00:00:15
+
+

@@ -1,0 +1,21 @@
+module contador_altura (
+    input  wire clock,
+    input  wire reset,   // reset síncrono ativo em 1
+    input  wire enable,   // habilita a contagem
+    output reg  [8:0] cont_altura, // 9 bits para até 479
+    output wire done          // vale 1 quando cont_altura == 479
+);
+    // sinal que indica fim da contagem
+    assign done = (cont_altura == 9'd479);
+
+    always @(posedge clock) begin
+        if (reset) begin
+            cont_altura <= 9'd0;
+        end else if (enable) begin
+            if (cont_altura == 9'd479)
+                cont_altura <= 9'd0;   // reinicia
+            else
+                cont_altura <= cont_altura + 9'd1;
+        end
+    end
+endmodule

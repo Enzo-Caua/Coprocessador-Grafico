@@ -1,0 +1,14 @@
+// Mapeia as coordenadas da nova imagem, com base na original
+module zoom_in_pixel_rep (
+   input  wire [9:0] x_zoom, // coordenada zoomino
+   input  wire [9:0] y_zoom, 
+   output wire [9:0] x_orig,  // coordenada origem
+   output wire [9:0] y_orig   
+);
+
+   // divisão inteira por 2 via shift right
+   assign x_src = x_zoom >> 1;
+   assign y_src = y_zoom >> 1;
+
+endmodule
+

@@ -1,0 +1,27 @@
+// Mapeia as coordenadas da nova imagem, com base na original
+module zoom_out_media_blocos (
+   input  wire [9:0] x_out,  // coordenada X na imagem reduzida
+   input  wire [9:0] y_out,  // coordenada Y na imagem reduzida
+   
+   output wire [9:0] x0, y0, // p00
+   output wire [9:0] x1, y1, // p01
+   output wire [9:0] x2, y2, // p10
+   output wire [9:0] x3, y3  // p11
+);
+
+   // Calcula o canto superior esquerdo do bloco
+   wire [9:0] x_font, y_font;
+   assign x_font = x_out << 1; // k=2
+   assign y_font = y_out << 1;
+
+   // ️Gera as coordenadas dos 4 pixels do bloco
+   assign x0 = x_font;     
+	assign y0 = y_font;       // p00
+   assign x1 = x_font + 1; 
+	assign y1 = y_font;       // p01
+   assign x2 = x_font;     
+	assign y2 = y_font + 1;   // p10
+   assign x3 = x_font + 1; 
+	assign y3 = y_font + 1;   // p11
+
+endmodule

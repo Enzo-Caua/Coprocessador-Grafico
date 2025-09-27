@@ -1,0 +1,22 @@
+// Mapeia as coordenadas da nova imagem, com base na original
+module zoom_in_nni (
+   input  wire clock,
+   input  wire reset,
+	input  wire fator_zoom, 
+   input  wire [9:0]  x_destino,  // coordenada destino
+   input  wire [9:0]  y_destino,
+   output reg  [9:0]  x_fonte,  // coordenada origem
+   output reg  [9:0]  y_fonte
+);
+
+   always @(posedge clock or posedge reset) begin
+      if (reset) begin
+         x_fonte <= 0;
+         y_fonte <= 0;
+      end else begin
+         x_fonte <= x_destino >> fator_zoom;
+         y_fonte <= y_destino >> fator_zoom;
+      end
+   end
+
+endmodule
