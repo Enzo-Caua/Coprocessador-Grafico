@@ -21,6 +21,8 @@
   - [4.3 Testes de Estabilidade](#43-testes-de-estabilidade)
   - [4.4 Erros e Problemas Identificados](#44-erros-e-problemas-identificados)
 - [5. Resultados e Conclusões](#5-resultados-e-conclusões)
+  - [5.1 Resultados Obtidos](#51-resultados-obtidos)
+  - [5.2 Conclusões](#52-conclusões)
 - [Autores](#autores)
 
 ---
